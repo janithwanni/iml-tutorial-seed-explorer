@@ -1,0 +1,115 @@
+---
+title: "ETC3250/5250 Tutorial 11"
+subtitle: "Are bigger models always better?"
+author: "Janith Wanniarachchi"
+engine: knitr
+---
+
+:::{.callout-note}
+Based on the email with Jack, 
+
+He suggested I perform this session in a lecture session during week 6 where the attendance would be higher and a video explaining how the application works would be helpful as well. 
+But for now I have written this in the form of a tutorial so that we can plug this into a tutorial or give as a handout for the students before they come to the lecture. 
+
+Since I'm targeting this as a pedagogical tool to be used by educators, I feel like the application should be available to one person at a time. But I have written the tutorial such that the students would be trying out the application themselves.   
+:::
+
+## `r emo::ji("target")` Objectives
+
+The goal for this week is to understand that even simpler neural networks can outperform complex neural networks.
+
+## `r emo::ji("wrench")` Preparation 
+
+- You won't be having any coding work on this session 
+- But a familiarity with neural networks and how they are constructed is expected
+- And an understanding on how random number generation works in computers is needed. 
+
+## Exercises: 
+
+#### Get to know the application 
+
+You will be accessing a web application in this session through [this link](https://2nd-year-milestone-slides.pages.dev/)
+
+**The story**
+
+The first time you load this application. You will be greeted with a story, that you may or may not experience in the near future.
+The main idea behind the story is for you to get an idea on what sort of question we are going to dive in to today.
+
+:::{.callout-info}
+
+1. What do you think might have been the reason for the neural networks to act in this weird way?
+2. What would you have done in this situation? Would you have picked the more complex model given by your manager or the more simpler model that you built
+
+:::
+
+**A walkthrough on the application** 
+
+In this application there are three main sections that we will focus on.
+
+1. **Creating our own dataset**
+
+First let's create a dataset, by moving the nodes in the box around. These will draw the decision boundary for the modeling task.
+
+:::{.callout-warning}
+
+_Should I add screenshots of the application here? Feels unnecessary, if we are doing a video as well._
+
+:::
+
+**Deciding on neurons**
+
+Let's start off with a single layer neural network.
+
+<details>
+<summary><b>Why?</b></summary>
+
+Because it's better to start off with a simple one layer neural network to make sure that the task can be completed with the simplest solution first before stepping in to more complex solutions.
+
+</details>
+
+For this dataset that we created, how many neurons should be in a single layer neural network?
+
+**Fitting multiple models** 
+
+Now for the given configuration of a single layer neural network with the following hyperparameters
+
+* Number of epochs: 100
+* Batch size: 71
+* Loss function: Binary Cross Entropy loss
+* Optimizer: Adam
+* Training set size: 5,000
+* Testing set size: 5,000
+
+We are going to fit multiple models
+
+:::{.callout-note}
+<details>
+<summary>But why are we fitting multiple models?</summary>
+It's because the seed that we use in fitting these models can affect the model's final performance!
+</details>
+:::
+
+**Let's visualise how each individual model has performed on the dataset** 
+
+First thing to notice is the spread of performance in the chart. Each point you hover over shows a model with a different seed that performed differently. Notice the spread of the metrics in this plot for the complex model and the simple model
+
+You can click on each point to see how the performance of that model was on the side.
+
+Or you can view the full performance as an animation below the spread.
+
+#### Observations 
+
+:::{.callout-note}
+
+* What did we learn from fitting models of different complexitiies with varying seeds?
+* How will you use what you learned today in the future when fitting models
+
+:::
+
+#### Evaluation
+
+As part of this tutorial we would love to hear your feedback on what you learned from this lesson. This quiz takes about 2-3 minutes and will be used to understand the effectiveness of the application. 
+
+[Link to Google Form](https://forms.gle/ZPCjsvsydWhDkiY1A)
+
+
