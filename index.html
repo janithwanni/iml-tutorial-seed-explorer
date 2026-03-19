@@ -6,9 +6,10 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-b6a8276bf55561bdbc268162d41bd1f7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.30">
 
+  <meta name="author" content="Janith Wanniarachchi">
   <title>Go big or go home?</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -16,6 +17,9 @@
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -28,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -127,8 +131,14 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Go big or go home?</h1>
+  <p class="subtitle">A worksheet on neural network fitting for ETC3250/5250</p>
 
 <div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Janith Wanniarachchi 
+</div>
+</div>
 </div>
 
 </section>
@@ -139,17 +149,22 @@
 <li>I work on explaining AI models.</li>
 <li>And as someone working on explaining AI models,</li>
 </ul>
+</section>
+<section id="fitting-a-neural-network" class="slide level2">
+<h2>Fitting a neural network</h2>
 <ul>
-<li class="fragment">I do not care about the size or complexity of the models.</li>
-<li class="fragment">I care only about the performance of the model and the modeling pipeline.</li>
-<li class="fragment"><em>If it ain’t broke don’t fix it am I right?</em></li>
+<li>It’s hard, right? We’d like to hit an easy button to get a model?</li>
+<li>We care only about the performance of the model and the modeling pipeline.</li>
+<li>We do not care about the size or complexity of the models.</li>
+<li><em>If it predicts well all is ok, right?</em></li>
 </ul>
 </section>
 <section>
-<section id="quick-refresher-on-how-neural-networks-work" class="title-slide slide level1 center">
-<h1>Quick refresher on how neural networks work</h1>
+<section id="quick-refresher" class="title-slide slide level1 center">
+<h1>Quick refresher</h1>
 <p><a href="https://playground.tensorflow.org/">Playground</a></p>
-</section>
+
+<img data-src="playground.png" class="r-stretch"></section>
 <section id="bigger-seems-to-be-always-better" class="slide level2 smaller">
 <h2>Bigger seems to be always better</h2>
 <div class="columns">
@@ -424,7 +439,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -536,13 +551,14 @@
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
