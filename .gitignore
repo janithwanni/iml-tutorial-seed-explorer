@@ -1,0 +1,7 @@
+/.quarto/
+fits/
+metrics/
+plots/
+nn_fits/
+imgs/
+index_files

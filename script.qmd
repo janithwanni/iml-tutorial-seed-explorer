@@ -1,0 +1,9 @@
+---
+title: "ETC3250/5250 Tutorial 11"
+subtitle: "The script"
+author: "Janith Wanniarachchi"
+engine: knitr
+---
+
+Hi everyone 
+

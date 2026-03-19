@@ -1,115 +1,260 @@
 ---
-title: "ETC3250/5250 Tutorial 11"
-subtitle: "Are bigger models always better?"
-author: "Janith Wanniarachchi"
-engine: knitr
+title: "Go big or go home?"
+format:
+  revealjs:
+    theme: [default, main.scss]
 ---
 
-:::{.callout-note}
-Based on the email with Jack, 
 
-He suggested I perform this session in a lecture session during week 6 where the attendance would be higher and a video explaining how the application works would be helpful as well. 
-But for now I have written this in the form of a tutorial so that we can plug this into a tutorial or give as a handout for the students before they come to the lecture. 
+```{r}
+library(here)
+library(arrow)
+library(tidyverse)
+library(patchwork)
 
-Since I'm targeting this as a pedagogical tool to be used by educators, I feel like the application should be available to one person at a time. But I have written the tutorial such that the students would be trying out the application themselves.   
+conflicted::conflicts_prefer(dplyr::filter)
+
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  out.width = "100%",
+  code.line.numbers = FALSE,
+  fig.retina = 4,
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  dev.args = list(pointsize = 11)
+)
+
+options(
+  digits = 2,
+  width = 60,
+  ggplot2.discrete.fill = c("#E57F12", "#38535E"),
+  ggplot2.discrete.colour = c("#E57F12", "#38535E")
+)
+
+theme_set(
+  theme_bw(base_size = 14) +
+    theme(
+      aspect.ratio = 1,
+      plot.background = element_rect(fill = 'transparent', colour = NA),
+      plot.title.position = "plot",
+      plot.title = element_text(size = 24),
+      panel.background = element_rect(fill = 'transparent', colour = NA),
+      legend.background = element_rect(fill = 'transparent', colour = NA),
+      legend.key = element_rect(fill = 'transparent', colour = NA)
+    )
+)
+
+plot_nn_fit <- function(combined, f1_score) {
+  data_obj <- arrow::read_parquet(glue::glue(
+    "fits/{combined}_fit.parquet.lz4"
+  ))
+  ggplot(data_obj, aes(x = x, y = y, color = factor(preds))) +
+    geom_point(show.legend = F) +
+    geom_line(
+      data = original_bound,
+      aes(x = x, y = y),
+      linewidth = 1,
+      alpha = 0.5,
+      color = "white",
+      inherit.aes = FALSE
+    ) +
+    coord_equal() +
+    theme_void() +
+    labs(
+      title = paste(
+        (str_split(combined, "_") |> unlist())[1],
+        " neurons"
+      )
+    )
+}
+
+process_metrics <- function(metrics) {
+  metrics |>
+    bind_rows() |>
+    mutate(row_id = row_number()) |>
+    pivot_longer(c(f1, acc), names_to = "metric", values_to = "val")
+}
+
+rank_metrics <- function() {
+  metric_files <- list.files(
+    here("metrics"),
+    pattern = "*.lz4",
+    full.names = TRUE
+  )
+  metrics <- lapply(metric_files, arrow::read_parquet) |>
+    process_metrics()
+
+  metrics |>
+    filter(metric == "f1") |>
+    group_by(neuron) |>
+    arrange(val) |>
+    mutate(ranked = row_number()) |>
+    ungroup()
+}
+
+
+get_ranked_seed <- function(ranked, neurons, rank_val = 1) {
+  x <- ranked |>
+    filter(neuron == neurons, ranked == rank_val) |>
+    unite(name, neuron, seed, epoch)
+
+  return(list(combined = x$name, val = x$val))
+}
+
+ranked <- rank_metrics()
+width <- 1080
+height <- 1080
+```
+
+## A little bit about me
+
+- This is the story of how I as a PhD student struggled for an entire year because I didn't win the lottery.
+- I work on explaining AI models.
+- And as someone working on explaining AI models,
+
+:::{.incremental}
+
+- I do not care about the size or complexity of the models.
+- I care only about the performance of the model and the modeling pipeline.
+- _If it ain't broke don't fix it am I right?_
+
 :::
 
-## `r emo::ji("target")` Objectives
+# Quick refresher on how neural networks work
 
-The goal for this week is to understand that even simpler neural networks can outperform complex neural networks.
+[Playground](https://playground.tensorflow.org/)
 
-## `r emo::ji("wrench")` Preparation 
+## Bigger seems to be always better {.smaller}
 
-- You won't be having any coding work on this session 
-- But a familiarity with neural networks and how they are constructed is expected
-- And an understanding on how random number generation works in computers is needed. 
 
-## Exercises: 
+::::{.columns}
+:::{.column .fragment fragment-index=1 width=50%}
 
-#### Get to know the application 
+- These toy neural networks we make in our laptops won't take up water and resources like someone using GPT 5 to get their thank you email polished.
+- So if we have the compute power we usually make the model a bit bigger in hopes of learning things we might not see.
 
-You will be accessing a web application in this session through [this link](https://2nd-year-milestone-slides.pages.dev/)
+**Should neural networks be made bigger**
 
-**The story**
+![](mentimeter_qr_code_1.png){style="width: 4rem; margin: 0 auto; text-align: center; display: block"}
 
-The first time you load this application. You will be greeted with a story, that you may or may not experience in the near future.
-The main idea behind the story is for you to get an idea on what sort of question we are going to dive in to today.
-
-:::{.callout-info}
-
-1. What do you think might have been the reason for the neural networks to act in this weird way?
-2. What would you have done in this situation? Would you have picked the more complex model given by your manager or the more simpler model that you built
+Join the online poll at [menti.com](menti.com) with code `4701 8473` 
 
 :::
+:::{.column .fragment fragment-index=2 width=50%}
 
-**A walkthrough on the application** 
-
-In this application there are three main sections that we will focus on.
-
-1. **Creating our own dataset**
-
-First let's create a dataset, by moving the nodes in the box around. These will draw the decision boundary for the modeling task.
-
-:::{.callout-warning}
-
-_Should I add screenshots of the application here? Feels unnecessary, if we are doing a video as well._
+<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alsu838d4h47fbcjq9myyyvagdnz83sm/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
 
 :::
+::::
+<!-- <div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/aljthcmca5jhx2zgk2jdejdiuja6z8ih/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div> -->
 
-**Deciding on neurons**
+## Let's take this dataset 
 
-Let's start off with a single layer neural network.
+```{r}
+#| echo: false
+dataset <- arrow::read_parquet(
+  "train_df.parquet.lz4"
+)
 
-<details>
-<summary><b>Why?</b></summary>
+original_bound <- jsonlite::fromJSON(
+  "[[-10,-10],[-8.875,-3.75],[-4.21875,-3.75],[-0.3125,1.25],[5,-5],[10,10]]"
+) |>
+  as.data.frame() |>
+  setNames(c("x", "y"))
 
-Because it's better to start off with a simple one layer neural network to make sure that the task can be completed with the simplest solution first before stepping in to more complex solutions.
+ggplot(dataset, aes(x = x, y = y, color = factor(class))) +
+  geom_point(size = 0.5) +
+  geom_line(
+    data = original_bound,
+    aes(x = x, y = y),
+    linewidth = 2,
+    alpha = 0.5,
+    color = "white",
+    inherit.aes = FALSE
+  ) +
+  coord_equal() +
+  theme_minimal() +
+  labs(color = "Class", x = "x", y = "y")
+```
 
-</details>
+## How big should the neural network be? {.smaller}
 
-For this dataset that we created, how many neurons should be in a single layer neural network?
+::::{.columns}
+:::{.column .fragment fragment-index=1 width=50%}
 
-**Fitting multiple models** 
+**Fixed hyperparameters (for the plot)**
 
-Now for the given configuration of a single layer neural network with the following hyperparameters
-
-* Number of epochs: 100
-* Batch size: 71
-* Loss function: Binary Cross Entropy loss
-* Optimizer: Adam
-* Training set size: 5,000
-* Testing set size: 5,000
-
-We are going to fit multiple models
-
-:::{.callout-note}
-<details>
-<summary>But why are we fitting multiple models?</summary>
-It's because the seed that we use in fitting these models can affect the model's final performance!
-</details>
-:::
-
-**Let's visualise how each individual model has performed on the dataset** 
-
-First thing to notice is the spread of performance in the chart. Each point you hover over shows a model with a different seed that performed differently. Notice the spread of the metrics in this plot for the complex model and the simple model
-
-You can click on each point to see how the performance of that model was on the side.
-
-Or you can view the full performance as an animation below the spread.
-
-#### Observations 
-
-:::{.callout-note}
-
-* What did we learn from fitting models of different complexitiies with varying seeds?
-* How will you use what you learned today in the future when fitting models
+- Number of epochs: 100
+- Batch size: 71
+- Loss function: Binary Cross Entropy loss
+- Optimizer: Adam
+- Training set size: 5,000
+- Testing set size: 5,000
 
 :::
+:::{.column .fragment fragment-index=2 width=50%}
 
-#### Evaluation
+**What shall we pick as the number of neurons in a single layer?**
 
-As part of this tutorial we would love to hear your feedback on what you learned from this lesson. This quiz takes about 2-3 minutes and will be used to understand the effectiveness of the application. 
+![](mentimeter_qr_code.png){style="width: 4rem; margin: 0 auto; text-align: center; display: block"}
 
-[Link to Google Form](https://forms.gle/ZPCjsvsydWhDkiY1A)
+Join the online poll at [menti.com](menti.com) with code `2311 3591` 
+
+
+<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/al3izsa4oukki2ynxuqfbv77a219zeb1/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
+
+:::
+::::
+
+## So here are our results
+
+```{r}
+#| echo: false
+#| fig-label: nn_fit_holder
+
+a <- list(
+  four = get_ranked_seed(ranked, 4),
+  eight = get_ranked_seed(ranked, 8),
+  five = get_ranked_seed(ranked, 5),
+  ten = get_ranked_seed(ranked, 10),
+  twenty = get_ranked_seed(ranked, 20),
+  thirty = get_ranked_seed(ranked, 30)
+)
+plot_nn_fit(a$four$combined, a$four$val) +
+  plot_nn_fit(a$eight$combined, a$eight$val) +
+  plot_nn_fit(a$five$combined, a$five$val) +
+  plot_nn_fit(a$ten$combined, a$ten$val) +
+  plot_nn_fit(a$twenty$combined, a$twenty$val) +
+  plot_nn_fit(a$thirty$combined, a$thirty$val)
+```
+
+
+# But why did that size work? Can't the smaller size work as well?
+
+## You can be bad at something, but are you consistently bad at it?
+
+- This seems nonsensical, what would change from running the same thing again and again?
+- Isn't it the case that no matter how many times you train a neural network model you will converge to the same place?
+
+But let's try,
+
+# How did this happen?
+
+# Never forget the little pockets that makes you feel like you are done learning.
+
+## The hidden seed
+
+The seed can affect the trajectory of the model training and you can end up in local optima that never improves no matter the number of epochs.
+- The seed can affect the initial weights that were used
+
+## What did we learn today?
+
+- Be curious, care about the detail, ask questions as to why things work the way they do. 
+- Sometimes the stupidest ideas can go amiss simply because you thought you learnt it all.
+
 
 

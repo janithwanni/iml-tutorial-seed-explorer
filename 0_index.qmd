@@ -1,0 +1,90 @@
+---
+title: "ETC3250/5250 Tutorial 11"
+subtitle: "Are bigger models always better?"
+author: "Janith Wanniarachchi"
+engine: knitr
+---
+
+## `r emo::ji("target")` Objectives
+
+The goal for this week is to understand that even simpler neural networks can outperform complex neural networks.
+
+## `r emo::ji("wrench")` Preparation 
+
+- You won't be having any coding work on this session 
+- But a familiarity with neural networks and how they are constructed is expected
+- And an understanding on how random number generation works in computers is needed. 
+
+## Exercises: 
+
+<!-- I need you to feel, -->
+<!-- the emotion that getting the right deep learning model working on a dataset requires a fair bit of luck and trial-and-error. -->
+<!-- feel that frustration of trying so hard -->
+<!-- feel before your eyes how trying different seeds has a drastic effect on the dataset -->
+
+<!-- NOTE: Think about the mentimeter questions and where they come in -->
+
+This is the story of how I as a PhD student had to struggle for an entire year because I didn't win the lottery.
+
+Everyone thinks that AI is amazing and you can beat anything with a neural network. But the question that you really have to think about is how are you going to get a model to work in a smaller setting when you know (or are being told) that it should work in that smaller setting. 
+
+Sure you can make it bigger and get the model to work somehow. But really are you just tunnel visioning on getting the best fit that you don't care about the cost or effort of it.
+
+Why should you care about getting a neural network to work in a smaller setting?
+
+Your four neuron vs four layer neural network won't take up water and resources like someone using GPT 5 to get their thank you email polished. Sure, but what about the practice of paying attention to the finer details? 
+
+I used to not care about the size of models. Heard about things like quantization and other performance optimization methods and if all else fails, cough up some cash and upgrade the hardware. 
+
+But is that the mindset we need to have? I want you all to leave this hall today, paying a bit more attention to the things that you create. Be it a model or anything else that you touch today.
+
+I used to care only about the performance of the model and somehow getting a pipeline working for a model. I didn't care why or how it was performing good, it just did, and if it ain't broke it don't fix it right?
+
+But when you adapt that mindset what you start losing out on is that curiosity in your mind that brought you here.
+
+Now let's be curious a bit. Take a look at this training dataset. The boundary is pretty clear we have two variables. Let's say as an exercise you were told to fit a neural network on this dataset, as a show of your skills let's say.  
+
+Looks pretty easy, but there are certain decisions that you have to make before hand right?
+
+So let's revise on how neural networks are built. You have several neurons that are stacked on top of each other with each neuron learning parts about the dataset and then passing that information forward to make different associations between these learned information. 
+
+Let's say since this dataset is small we picked only one layer and then we have to now make a critical decision. How big do we make the neural network. 
+
+There are several heuristics out there, one that I used to rely on whichever one that worked okay enough on the first go. But realistically you can decide the number of neurons by the bends in the dataset, you can decide the number of neurons by the different feature intearctions that you want to consider in modeling this boundary. Since we can see the boundary clearly here, we can get the number of neurons based on the number of bends in the boundary. 
+
+Why the bends? Well neurons are basically linear combinations with a non linear activation function. And what do you get when you make a linear combination of two variables (eg. ax + by = c)? A line. So if we can draw the decision boundary with a combination of lines then we can ideally model the boundary well enough that way. Now a question would be there if a circular boundary meant there would be infinite number of neurons needed. Well if you are limiting yourself to a single layer and trying to fit the circle perfectly. And that is multiple layers come into play.
+
+All right so we picked the number of neurons and we fit the model. And the result looks a bit like this, and frankly that sucks. Maybe this whole idea about the bend thing might be garbage. So let's crank it up to double that size and fit the model again. And bam look at that perfect model.
+
+Is the story done here?
+
+That is where your curiosity should come in to play? Why did the bigger one work? Well it had more space to learn things. But then what did the smaller one learn and why didn't it learn to its fullest capacity?
+
+Let's revisit the smaller one and train the model again to see if it will learn something new with more epochs maybe? Maybe the model is a slow learner. Well that didn't seem to change much.
+
+We have exhausted almost every option in training a neural network. Except for one thing. 
+
+You can be bad at something, but are you consistently bad at it?
+
+Let's try running the model multiple times and see how the boundary changes. 
+
+This seems nonsensical, what would change from running the same thing again and again?
+Isn't it the case that no matter how many times you train a neural network model you will converge to the same place?
+
+For that I built a little tool for us to play with. 
+
+We have the dataset all setup here. And to compare let's use the bigger model as well and fit let's say six or seven models from each size. 
+
+And here on this section you can see the spread of the values. Well that's a huge spread isn't it.
+
+So what happened here?
+
+Never forget the little pockets that makes you feel like you are done learning.
+
+The seed can affect the trajectory of the model training and you can end up in local optima that never improves no matter the number of epochs.
+
+So what did we learn today?
+
+Be curious, care about the detail, ask questions as to why things work the way they do. 
+Sometimes the stupidest ideas can go amiss simply because you thought you learnt it all.
+
