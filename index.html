@@ -164,16 +164,31 @@ Janith Wanniarachchi
 <h1>Quick refresher</h1>
 <p><a href="https://playground.tensorflow.org/">Playground</a></p>
 
-<img data-src="playground.png" class="r-stretch"></section>
-<section id="bigger-seems-to-be-always-better" class="slide level2 smaller">
-<h2>Bigger seems to be always better</h2>
+<img data-src="playground_2.png" class="r-stretch"></section>
+<section id="questions-for-you" class="slide level2">
+<h2>QUESTIONS for you</h2>
 <div class="columns">
-<div class="column fragment" data-fragment-index="1" style="width:50%;">
+<div class="column" style="width:50%;">
+<p>What is the role of a node in the hidden layer?</p>
 <ul>
-<li>These toy neural networks we make in our laptops won’t take up water and resources like someone using GPT 5 to get their thank you email polished.</li>
-<li>So if we have the compute power we usually make the model a bit bigger in hopes of learning things we might not see.</li>
+<li>makes a linear cut</li>
+<li>fits one part of the data</li>
+<li>removes noise</li>
+<li>defines a logistic function</li>
+<li>activates the net</li>
 </ul>
-<p><strong>Should neural networks be made bigger</strong></p>
+<p>Do you think the random seed used will affect a fit?</p>
+<ul>
+<li>yes</li>
+<li>no</li>
+<li>maybe</li>
+</ul>
+<p>Will more neurons always result in a better fit?</p>
+<ul>
+<li>yes</li>
+<li>no</li>
+<li>maybe</li>
+</ul>
 <p><img data-src="mentimeter_qr_code_1.png" style="width: 4rem; margin: 0 auto; text-align: center; display: block"></p>
 <p>Join the online poll at <a href="menti.com">menti.com</a> with code <code>4701 8473</code></p>
 </div><div class="column fragment" data-fragment-index="2" style="width:50%;">
@@ -184,15 +199,29 @@ Janith Wanniarachchi
 </div></div>
 <!-- <div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/aljthcmca5jhx2zgk2jdejdiuja6z8ih/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div> -->
 </section>
-<section id="lets-take-this-dataset" class="slide level2">
-<h2>Let’s take this dataset</h2>
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
-<section id="how-big-should-the-neural-network-be" class="slide level2 smaller">
-<h2>How big should the neural network be?</h2>
+<section id="lets-work-on-fitting-this-dataset" class="slide level2">
+<h2>Let’s work on fitting this dataset</h2>
 <div class="columns">
-<div class="column fragment" data-fragment-index="1" style="width:50%;">
-<p><strong>Fixed hyperparameters (for the plot)</strong></p>
+<div class="column" style="width:70%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p><br><br> This has two predictors, <code>x</code>, <code>y</code> and</p>
+<p>one response, <code>Class</code>, a categorical variable with two levels.</p>
+</div></div>
+</section>
+<section id="neural-network-size" class="slide level2 smaller">
+<h2>Neural network size?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>These hyperparameters are fixed for now</strong></p>
 <ul>
 <li>Number of epochs: 100</li>
 <li>Batch size: 71</li>
@@ -201,8 +230,18 @@ Janith Wanniarachchi
 <li>Training set size: 5,000</li>
 <li>Testing set size: 5,000</li>
 </ul>
+<p><strong>But you can choose the number of neurons in the hidden layer.</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 </div><div class="column fragment" data-fragment-index="2" style="width:50%;">
-<p><strong>What shall we pick as the number of neurons in a single layer?</strong></p>
+<p><strong>How many neurons?</strong></p>
 <p><img data-src="mentimeter_qr_code.png" style="width: 4rem; margin: 0 auto; text-align: center; display: block"></p>
 <p>Join the online poll at <a href="menti.com">menti.com</a> with code <code>2311 3591</code></p>
 <div style="position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;">
@@ -211,42 +250,74 @@ Janith Wanniarachchi
 </div>
 </div></div>
 </section>
-<section id="so-here-are-our-results" class="slide level2">
-<h2>So here are our results</h2>
+<section id="so-here-are-some-fits" class="slide level2">
+<h2>So here are some fits</h2>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section></section>
-<section>
-<section id="but-why-did-that-size-work-cant-the-smaller-size-work-as-well" class="title-slide slide level1 center">
-<h1>But why did that size work? Can’t the smaller size work as well?</h1>
-
-</section>
-<section id="you-can-be-bad-at-something-but-are-you-consistently-bad-at-it" class="slide level2">
-<h2>You can be bad at something, but are you consistently bad at it?</h2>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="lets-try-some-different-sizes" class="slide level2">
+<h2>Let’s try some different sizes</h2>
 <ul>
-<li>This seems nonsensical, what would change from running the same thing again and again?</li>
-<li>Isn’t it the case that no matter how many times you train a neural network model you will converge to the same place?</li>
+<li>We will fit two models: 5, 30 neurons</li>
+<li>We will also re-fit multiple times</li>
 </ul>
-<p>But let’s try,</p>
-</section></section>
-<section id="how-did-this-happen" class="title-slide slide level1 center">
-<h1>How did this happen?</h1>
-
 </section>
-
-<section>
-<section id="never-forget-the-little-pockets-that-makes-you-feel-like-you-are-done-learning." class="title-slide slide level1 center">
-<h1>Never forget the little pockets that makes you feel like you are done learning.</h1>
-
-</section>
-<section id="the-hidden-seed" class="slide level2">
-<h2>The hidden seed</h2>
-<p>The seed can affect the trajectory of the model training and you can end up in local optima that never improves no matter the number of epochs. - The seed can affect the initial weights that were used</p>
-</section>
-<section id="what-did-we-learn-today" class="slide level2">
-<h2>What did we learn today?</h2>
+<section id="what-have-we-learned" class="slide level2">
+<h2>What have we learned?</h2>
 <ul>
-<li>Be curious, care about the detail, ask questions as to why things work the way they do.</li>
-<li>Sometimes the stupidest ideas can go amiss simply because you thought you learnt it all.</li>
+<li>The larger neural network has more stable fits</li>
+<li>The smaller neural network is as accurate as the larger one
+<ul>
+<li>sometimes</li>
+<li>but has a lot of variability in the model fit (depending on the initial random seed)</li>
+</ul></li>
+</ul>
+</section>
+<section id="your-turn" class="slide level2">
+<h2>Your turn</h2>
+<p>Go to this app, and play with setting the number of neurons and re-fitting multiple times. Think about how the fitted model looks with the different choices.</p>
+<p>You’ve got 15 minutes</p>
+</section>
+<section id="questions-for-you-1" class="slide level2">
+<h2>QUESTIONS for you</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>What is the role of a node in the hidden layer?</p>
+<ul>
+<li>makes a linear cut</li>
+<li>fits one part of the data</li>
+<li>removes noise</li>
+<li>defines a logistic function</li>
+<li>activates the net</li>
+</ul>
+<p>Do you think the random seed used will affect a fit?</p>
+<ul>
+<li>yes</li>
+<li>no</li>
+<li>maybe</li>
+</ul>
+<p>Will more neurons always result in a better fit?</p>
+<ul>
+<li>yes</li>
+<li>no</li>
+<li>maybe</li>
+</ul>
+<p>In one word, how useful was this workshop?</p>
+<p><img data-src="mentimeter_qr_code_1.png" style="width: 4rem; margin: 0 auto; text-align: center; display: block"></p>
+<p>Join the online poll at <a href="menti.com">menti.com</a> with code <code>4701 8473</code></p>
+</div><div class="column fragment" data-fragment-index="2" style="width:50%;">
+<div style="position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;">
+<iframe sandbox="allow-popups allow-scripts allow-same-origin allow-presentation" allowfullscreen="true" allowtransparency="true" frameborder="0" height="315" src="https://www.mentimeter.com/app/presentation/alsu838d4h47fbcjq9myyyvagdnz83sm/embed" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" width="420">
+</iframe>
+</div>
+</div></div>
+</section>
+<section id="wrapping-up" class="slide level2">
+<h2>Wrapping up</h2>
+<ul>
+<li>Be curious</li>
+<li>Care about the little things</li>
+<li>Ask why and how things work, or do something different from what we expect</li>
+<li>The big black boxes of neural networks are not so dark with little glimmers of light</li>
 </ul>
 
 </section></section>

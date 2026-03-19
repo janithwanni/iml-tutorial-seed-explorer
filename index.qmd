@@ -130,26 +130,40 @@ height <- 1080
 
 [Playground](https://playground.tensorflow.org/)
 
-![](playground.png)
+![](playground_2.png)
 
 
-## Bigger seems to be always better {.smaller}
+## QUESTIONS for you
 
+:::: {.columns}
+::: {.column width=50%}
 
-::::{.columns}
-:::{.column .fragment fragment-index=1 width=50%}
+What is the role of a node in the hidden layer?
 
-- These toy neural networks we make in our laptops won't take up water and resources like someone using GPT 5 to get their thank you email polished.
-- So if we have the compute power we usually make the model a bit bigger in hopes of learning things we might not see.
+- makes a linear cut
+- fits one part of the data
+- removes noise
+- defines a logistic function
+- activates the net
 
-**Should neural networks be made bigger**
+Do you think the random seed used will affect a fit?
+
+- yes
+- no
+- maybe
+
+Will more neurons always result in a better fit?
+
+- yes
+- no
+- maybe
 
 ![](mentimeter_qr_code_1.png){style="width: 4rem; margin: 0 auto; text-align: center; display: block"}
 
 Join the online poll at [menti.com](menti.com) with code `4701 8473` 
 
 :::
-:::{.column .fragment fragment-index=2 width=50%}
+::: {.column .fragment fragment-index=2 width=50%}
 
 <div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alsu838d4h47fbcjq9myyyvagdnz83sm/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
 
@@ -157,10 +171,16 @@ Join the online poll at [menti.com](menti.com) with code `4701 8473`
 ::::
 <!-- <div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/aljthcmca5jhx2zgk2jdejdiuja6z8ih/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div> -->
 
-## Let's take this dataset 
+## Let's work on fitting this dataset 
+
+:::: {.columns}
+::: {.column width=70%}
 
 ```{r}
 #| echo: false
+#| fig-width: 4
+#| fig-height: 5
+#| out-width: 100%
 dataset <- arrow::read_parquet(
   "train_df.parquet.lz4"
 )
@@ -171,7 +191,7 @@ original_bound <- jsonlite::fromJSON(
   as.data.frame() |>
   setNames(c("x", "y"))
 
-ggplot(dataset, aes(x = x, y = y, color = factor(class))) +
+p <- ggplot(dataset, aes(x = x, y = y, color = factor(class))) +
   geom_point(size = 0.5) +
   geom_line(
     data = original_bound,
@@ -183,15 +203,29 @@ ggplot(dataset, aes(x = x, y = y, color = factor(class))) +
   ) +
   coord_equal() +
   theme_minimal() +
-  labs(color = "Class", x = "x", y = "y")
+  labs(color = "Class", x = "x", y = "y") +
+  theme(legend.position = "bottom",
+    axis.text = element_blank())
+  p
 ```
 
-## How big should the neural network be? {.smaller}
+:::
+::: {.column width=30%}
+
+<br><br>
+This has two predictors, `x`, `y` and 
+
+one response, `Class`, a categorical variable with two levels. 
+
+:::
+::::
+
+## Neural network size? {.smaller}
 
 ::::{.columns}
-:::{.column .fragment fragment-index=1 width=50%}
+:::{.column width=50%}
 
-**Fixed hyperparameters (for the plot)**
+**These hyperparameters are fixed for now**
 
 - Number of epochs: 100
 - Batch size: 71
@@ -200,10 +234,20 @@ ggplot(dataset, aes(x = x, y = y, color = factor(class))) +
 - Training set size: 5,000
 - Testing set size: 5,000
 
+**But you can choose the number of neurons in the hidden layer.**
+
+```{r}
+#| echo: false
+#| fig-width: 4
+#| fig-height: 5
+#| out-width: 70%
+p
+```
+
 :::
 :::{.column .fragment fragment-index=2 width=50%}
 
-**What shall we pick as the number of neurons in a single layer?**
+**How many neurons?**
 
 ![](mentimeter_qr_code.png){style="width: 4rem; margin: 0 auto; text-align: center; display: block"}
 
@@ -215,7 +259,7 @@ Join the online poll at [menti.com](menti.com) with code `2311 3591`
 :::
 ::::
 
-## So here are our results
+## So here are some fits
 
 ```{r}
 #| echo: false
@@ -238,28 +282,72 @@ plot_nn_fit(a$four$combined, a$four$val) +
 ```
 
 
-# But why did that size work? Can't the smaller size work as well?
+## Let's try some different sizes
 
-## You can be bad at something, but are you consistently bad at it?
+- We will fit two models: 5, 30 neurons
+- We will also re-fit multiple times
 
-- This seems nonsensical, what would change from running the same thing again and again?
-- Isn't it the case that no matter how many times you train a neural network model you will converge to the same place?
+## What have we learned?
 
-But let's try,
+- The larger neural network has more stable fits
+- The smaller neural network is as accurate as the larger one
+    - sometimes
+    - but has a lot of variability in the model fit (depending on the initial random seed)
 
-# How did this happen?
+## Your turn
 
-# Never forget the little pockets that makes you feel like you are done learning.
+Go to this app, and play with setting the number of neurons and re-fitting multiple times. Think about how the fitted model looks with the different choices.
 
-## The hidden seed
+You've got 15 minutes
 
-The seed can affect the trajectory of the model training and you can end up in local optima that never improves no matter the number of epochs.
-- The seed can affect the initial weights that were used
+## QUESTIONS for you
 
-## What did we learn today?
+:::: {.columns}
+::: {.column width=50%}
 
-- Be curious, care about the detail, ask questions as to why things work the way they do. 
-- Sometimes the stupidest ideas can go amiss simply because you thought you learnt it all.
+What is the role of a node in the hidden layer?
+
+- makes a linear cut
+- fits one part of the data
+- removes noise
+- defines a logistic function
+- activates the net
+
+Do you think the random seed used will affect a fit?
+
+- yes
+- no
+- maybe
+
+Will more neurons always result in a better fit?
+
+- yes
+- no
+- maybe
+
+In one word, how useful was this workshop?
+
+
+![](mentimeter_qr_code_1.png){style="width: 4rem; margin: 0 auto; text-align: center; display: block"}
+
+Join the online poll at [menti.com](menti.com) with code `4701 8473` 
+
+:::
+::: {.column .fragment fragment-index=2 width=50%}
+
+<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alsu838d4h47fbcjq9myyyvagdnz83sm/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
+
+:::
+::::
+
+
+
+## Wrapping up
+
+- Be curious 
+- Care about the little things 
+- Ask why and how things work, or do something different from what we expect
+- The big black boxes of neural networks are not so dark with little glimmers of light
 
 
 
