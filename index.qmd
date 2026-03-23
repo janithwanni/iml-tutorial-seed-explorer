@@ -111,6 +111,16 @@ ranked <- rank_metrics()
 width <- 1080
 height <- 1080
 ```
+## Before we start {.center}
+
+- This session is going to contain a Mentimeter quiz that will require audience participation. 
+- By participating in the quiz, you are opting in to let your feedback be collected for improvement purposes.
+
+:::{.fragment}
+
+### Now back to the show
+
+:::
 
 ## A little bit about me
 
@@ -145,7 +155,7 @@ height <- 1080
 
 ## Q1
 
-What is the role of a node in the hidden layer?
+What is the role of a neuron in the hidden layer?
 
 - defines a logistic function
 - activates the net
@@ -328,7 +338,7 @@ You've got 10 minutes
 
 ## Q1
 
-What is the role of a node in the hidden layer?
+What is the role of a neuron in the hidden layer?
 
 - defines a logistic function
 - activates the net
@@ -385,5 +395,54 @@ Join the online poll at [menti.com](menti.com) with code `4398 8771`
 - Ask why and how things work, or do something different from what we expect
 - The big black boxes of neural networks are not so dark with little glimmers of light
 
+## Thank you! {.center}
 
+Have any suggestions or ideas? {{< fa comment >}}
+
+```{=html}
+<div class = "card-container">
+  <div class="card">
+    <div class="card-text">
+      <div class="portada">
+        <img src = "imgs/banner_img_1.jpg" />
+        <span style="font-size: 0.7rem; font-style: italic;"> The colour palette for these slides are inspired by the photograph by Bill Henson as part of the art installation Oneiroi in the Hellenic Museum, Melbourne. </span>
+      </div>
+      <div class="title-total"> 
+        <div class = "img-container">
+          <div class = "img-avatar">
+            <img src = "imgs/profile_picture.jpeg "/>
+          </div>
+        </div>
+        <h4 class="accent-color">Janith Wanniarachchi</h4>
+        <div class="desc">
+          <div>
+            <span> <i class="fa-regular fa-envelope fa-sm"></i> </span> 
+            <span class = "contact-detail"> janith.wanniarachchi@monash.edu </span>
+          </div>
+          <div>
+            <span> <i class="fa-brands fa-github-alt fa-sm"></i> </span>
+            <span class = "contact-detail"> @janithwanni </span>
+          </div>
+          <div>
+            <span> <i class="fa-brands fa-bluesky fa-sm"></i> </span>
+            <span class = "contact-detail"> @janithwanni.bsky.social </span>
+          </div>
+          <div>
+            <span> <i class = "fa-brands fa-linkedin"></i></span>
+            <span class = "contact-detail"> janith-wanniarachchi </span>
+          </div>
+          <div>
+            <span> <i class = "fa-solid fa-globe fa-sm"></i> </span>
+            <span class = "contact-detail"> janithwanni.com </span>
+          </div>
+          <div>
+            <span> <i class="fa-solid fa-brain fa-sm"></i> </span>
+            <span class = "contact-detail"> hear.janithwanni.com </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+```
 
