@@ -251,7 +251,7 @@ one response, `Class`, a categorical variable with two levels.
 
 ## Question
 
-**But you can choose the number of neurons in the hidden layer.**
+**How many neurons are needed in the hidden layer?**
 
 ```{r}
 #| echo: false
