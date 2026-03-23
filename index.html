@@ -6,10 +6,10 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-b6a8276bf55561bdbc268162d41bd1f7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="index_files/libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="index_files/libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+  <meta name="generator" content="quarto-1.9.30">
 
   <meta name="author" content="Janith Wanniarachchi">
   <title>Go big or go home?</title>
@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -31,7 +34,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-599f93cc170c59b95e21f3b133ea615d.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-346106d55fa17a2e87f21d749ca0bedf.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -141,16 +144,6 @@ Janith Wanniarachchi
 </div>
 
 </section>
-<section id="before-we-start" class="slide level2 center">
-<h2>Before we start</h2>
-<ul>
-<li>This session is going to contain a Mentimeter quiz that will require audience participation.</li>
-<li>By participating in the quiz, you are opting in to let your feedback be collected for improvement purposes.</li>
-</ul>
-<div class="fragment">
-<h3 id="now-back-to-the-show">Now back to the show</h3>
-</div>
-</section>
 <section id="a-little-bit-about-me" class="slide level2">
 <h2>A little bit about me</h2>
 <ul>
@@ -162,6 +155,19 @@ Janith Wanniarachchi
 <li>And as someone working on explaining AI models, first I need to make an AI model.</li>
 </ul>
 </section>
+<section id="before-we-start" class="slide level2 center">
+<h2>Before we start</h2>
+<div class="columns">
+<div class="column" style="width:58%;">
+<p>During the workshop, you’ll be asked a few questions to help explore the ideas we’re covering. By providing a response, you are agreeing to allow us to use your data. <strong>You can choose not to respond to any question</strong>. Your answers are anonymous, cannot be individually identified, and only summary statistics are stored. Nothing will be marked or affect your grade. You will be able to use a web app during the session which does not collect any data.</p>
+</div><div class="column" style="width:42%;">
+<p>Participating in these activities can <em>help you build your understanding</em>, and providing your responses will help us <em>improve how we teach this topic</em>.</p>
+<p>You can learn more details about the project, by</p>
+<div class="fragment">
+<h3 id="now-back-to-the-show">Now back to the show</h3>
+</div>
+</div></div>
+</section>
 <section id="fitting-a-neural-network" class="slide level2">
 <h2>Fitting a neural network</h2>
 <ul>
@@ -171,9 +177,8 @@ Janith Wanniarachchi
 <li><em>If it predicts well all is ok, right?</em></li>
 </ul>
 </section>
-<section>
-<section id="quick-refresher" class="title-slide slide level1 center">
-<h1>Quick refresher</h1>
+<section id="quick-refresher" class="slide level2">
+<h2>Quick refresher</h2>
 <p><a href="https://playground.tensorflow.org/">Playground</a></p>
 
 <img data-src="playground_2.png" class="r-stretch"></section>
@@ -281,16 +286,20 @@ Janith Wanniarachchi
 </div>
 </div></div>
 </section>
-<section id="lets-try-some-different-sizes" class="slide level2 smaller">
-<h2>Let’s try some different sizes</h2>
+<section id="lets-try-some-different-data-and-nn-sizes" class="slide level2 smaller">
+<h2>Let’s try some different data and NN sizes</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
 <ul>
 <li>We will fit two models: 5, 30 neurons</li>
 <li>We will also re-fit multiple times</li>
 </ul>
+</div><div class="column" style="width:75%;">
 <div class="fragment">
 <h4 id="for-that-we-will-use-a-special-tool-to-rerun-these-fits-multiple-times">For that we will use a special tool to rerun these fits multiple times</h4>
 <p><img data-src="imgs/app-demo.png"></p>
 </div>
+</div></div>
 </section>
 <section id="your-turn" class="slide level2">
 <h2>Your turn</h2>
@@ -337,7 +346,7 @@ Janith Wanniarachchi
 <section id="what-have-we-learned" class="slide level2">
 <h2>What have we learned?</h2>
 <ul>
-<li><p>The larger neural network has more stable fits</p></li>
+<li><p>The larger neural network has more consistent fit statistics</p></li>
 <li><p>The smaller neural network is as accurate as the larger one</p>
 <ul>
 <li>sometimes</li>
@@ -457,7 +466,7 @@ Janith Wanniarachchi
   </div>
 </div>
 
-</section></section>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -647,7 +656,7 @@ Janith Wanniarachchi
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -759,13 +768,14 @@ Janith Wanniarachchi
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

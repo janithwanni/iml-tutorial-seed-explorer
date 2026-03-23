@@ -111,16 +111,7 @@ ranked <- rank_metrics()
 width <- 1080
 height <- 1080
 ```
-## Before we start {.center}
 
-- This session is going to contain a Mentimeter quiz that will require audience participation. 
-- By participating in the quiz, you are opting in to let your feedback be collected for improvement purposes.
-
-:::{.fragment}
-
-### Now back to the show
-
-:::
 
 ## A little bit about me
 
@@ -131,6 +122,28 @@ height <- 1080
 - I work on explaining AI models.
 - And as someone working on explaining AI models, first I need to make an AI model.
 
+## Before we start {.center}
+
+:::: {.columns}
+::: {.column width=58%}
+
+During the workshop, you’ll be asked a few questions to help explore the ideas we’re covering. By providing a response, you are agreeing to allow us to use your data. **You can choose not to respond to any question**. Your answers are anonymous, cannot be individually identified, and only summary statistics are stored. Nothing will be marked or affect your grade. You will be able to use a web app during the session which does not collect any data. 
+
+:::
+::: {.column width=42%}
+
+Participating in these activities can *help you build your understanding*, and providing your responses will help us *improve how we teach this topic*.
+
+You can learn more details about the project, by 
+
+:::{.fragment}
+
+### Now back to the show
+
+:::
+:::
+::::
+
 ## Fitting a neural network
 
 - It's hard, right? We'd like to hit an easy button to get a model?
@@ -139,7 +152,7 @@ height <- 1080
 - _If it predicts well all is ok, right?_
 
 
-# Quick refresher
+## Quick refresher
 
 [Playground](https://playground.tensorflow.org/)
 
@@ -285,16 +298,25 @@ Join the online poll at [menti.com](menti.com) with code `4398 8771`
 :::
 ::::
 
-## Let's try some different sizes {.smaller}
+## Let's try some different data and NN sizes {.smaller}
+
+:::: {.columns}
+::: {.column width=25%}
 
 - We will fit two models: 5, 30 neurons
 - We will also re-fit multiple times
 
+:::
+::: {.column width=75%}
 :::{.fragment}
+
 #### For that we will use a special tool to rerun these fits multiple times
 
 ![](imgs/app-demo.png)
+
 :::
+:::
+::::
 
 ## Your turn
 
@@ -323,7 +345,7 @@ You've got 10 minutes
 
 ## What have we learned?
 
-- The larger neural network has more stable fits
+- The larger neural network has more consistent fit statistics
 
 - The smaller neural network is as accurate as the larger one
     - sometimes
