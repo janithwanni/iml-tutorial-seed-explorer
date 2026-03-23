@@ -147,11 +147,11 @@ height <- 1080
 
 What is the role of a node in the hidden layer?
 
-- makes a linear cut
-- fits one part of the data
-- removes noise
 - defines a logistic function
 - activates the net
+- fits one part of the data
+- removes noise
+- makes a linear cut
 
 ## Q2
 
@@ -348,11 +348,11 @@ You've got 15 minutes
 
 What is the role of a node in the hidden layer?
 
-- makes a linear cut
-- fits one part of the data
-- removes noise
 - defines a logistic function
 - activates the net
+- fits one part of the data
+- removes noise
+- makes a linear cut
 
 ## Q2
 
