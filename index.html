@@ -6,8 +6,8 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-b6a8276bf55561bdbc268162d41bd1f7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.30">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Janith Wanniarachchi">
   <title>Go big or go home?</title>
@@ -17,9 +17,6 @@
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -32,7 +29,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-44312963e04b8ead88f86d3339f0ef9a.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -146,8 +143,11 @@ Janith Wanniarachchi
 <h2>A little bit about me</h2>
 <ul>
 <li>This is the story of how I as a PhD student struggled for an entire year because I didn’t win the lottery.</li>
+</ul>
+
+<img data-src="https://i.kym-cdn.com/entries/icons/facebook/000/024/785/Screen_Shot_2017-11-30_at_1.12.37_PM.jpg" style="width:50.0%" class="r-stretch"><ul>
 <li>I work on explaining AI models.</li>
-<li>And as someone working on explaining AI models,</li>
+<li>And as someone working on explaining AI models, first I need to make an AI model.</li>
 </ul>
 </section>
 <section id="fitting-a-neural-network" class="slide level2">
@@ -169,6 +169,10 @@ Janith Wanniarachchi
 <h2>QUESTIONS for you</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Q1</a></li><li><a href="#tabset-1-2">Q2</a></li><li><a href="#tabset-1-3">Q3</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
 <p>What is the role of a node in the hidden layer?</p>
 <ul>
 <li>makes a linear cut</li>
@@ -177,32 +181,38 @@ Janith Wanniarachchi
 <li>defines a logistic function</li>
 <li>activates the net</li>
 </ul>
+</div>
+<div id="tabset-1-2">
 <p>Do you think the random seed used will affect a fit?</p>
 <ul>
 <li>yes</li>
 <li>no</li>
 <li>maybe</li>
 </ul>
+</div>
+<div id="tabset-1-3">
 <p>Will more neurons always result in a better fit?</p>
 <ul>
 <li>yes</li>
 <li>no</li>
 <li>maybe</li>
 </ul>
-<p><img data-src="mentimeter_qr_code_1.png" style="width: 4rem; margin: 0 auto; text-align: center; display: block"></p>
-<p>Join the online poll at <a href="menti.com">menti.com</a> with code <code>4701 8473</code></p>
+</div>
+</div>
+</div>
 </div><div class="column fragment" data-fragment-index="2" style="width:50%;">
+<p><img data-src="final_menti.png" style="width: 6rem; margin: 0 auto; text-align: center; display: block"></p>
+<p>Join the online poll at <a href="menti.com">menti.com</a> with code <code>4398 8771</code></p>
 <div style="position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;">
-<iframe sandbox="allow-popups allow-scripts allow-same-origin allow-presentation" allowfullscreen="true" allowtransparency="true" frameborder="0" height="315" src="https://www.mentimeter.com/app/presentation/alsu838d4h47fbcjq9myyyvagdnz83sm/embed" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" width="420">
+<iframe sandbox="allow-popups allow-scripts allow-same-origin allow-presentation" allowfullscreen="true" allowtransparency="true" frameborder="0" height="315" src="https://www.mentimeter.com/app/presentation/alj3m1u8cudogusi4chsr1wbt1jfj6o8/embed" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" width="420">
 </iframe>
 </div>
 </div></div>
-<!-- <div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/aljthcmca5jhx2zgk2jdejdiuja6z8ih/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div> -->
 </section>
 <section id="lets-work-on-fitting-this-dataset" class="slide level2">
 <h2>Let’s work on fitting this dataset</h2>
 <div class="columns">
-<div class="column" style="width:70%;">
+<div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -221,6 +231,10 @@ Janith Wanniarachchi
 <h2>Neural network size?</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Hyperparameters</a></li><li><a href="#tabset-2-2">Question</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
 <p><strong>These hyperparameters are fixed for now</strong></p>
 <ul>
 <li>Number of epochs: 100</li>
@@ -230,6 +244,8 @@ Janith Wanniarachchi
 <li>Training set size: 5,000</li>
 <li>Testing set size: 5,000</li>
 </ul>
+</div>
+<div id="tabset-2-2">
 <p><strong>But you can choose the number of neurons in the hidden layer.</strong></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -240,12 +256,15 @@ Janith Wanniarachchi
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </div><div class="column fragment" data-fragment-index="2" style="width:50%;">
 <p><strong>How many neurons?</strong></p>
-<p><img data-src="mentimeter_qr_code.png" style="width: 4rem; margin: 0 auto; text-align: center; display: block"></p>
-<p>Join the online poll at <a href="menti.com">menti.com</a> with code <code>2311 3591</code></p>
+<p><img data-src="final_menti.png" style="width: 6rem; margin: 0 auto; text-align: center; display: block"></p>
+<p>Join the online poll at <a href="menti.com">menti.com</a> with code <code>4398 8771</code></p>
 <div style="position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;">
-<iframe sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen="true" allowtransparency="true" frameborder="0" height="315" src="https://www.mentimeter.com/app/presentation/al3izsa4oukki2ynxuqfbv77a219zeb1/embed" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" width="420">
+<iframe sandbox="allow-popups allow-scripts allow-same-origin allow-presentation" allowfullscreen="true" allowtransparency="true" frameborder="0" height="315" src="https://www.mentimeter.com/app/presentation/alj3m1u8cudogusi4chsr1wbt1jfj6o8/embed" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" width="420">
 </iframe>
 </div>
 </div></div>
@@ -264,8 +283,8 @@ Janith Wanniarachchi
 <section id="what-have-we-learned" class="slide level2">
 <h2>What have we learned?</h2>
 <ul>
-<li>The larger neural network has more stable fits</li>
-<li>The smaller neural network is as accurate as the larger one
+<li><p>The larger neural network has more stable fits</p></li>
+<li><p>The smaller neural network is as accurate as the larger one</p>
 <ul>
 <li>sometimes</li>
 <li>but has a lot of variability in the model fit (depending on the initial random seed)</li>
@@ -274,13 +293,54 @@ Janith Wanniarachchi
 </section>
 <section id="your-turn" class="slide level2">
 <h2>Your turn</h2>
-<p>Go to this app, and play with setting the number of neurons and re-fitting multiple times. Think about how the fitted model looks with the different choices.</p>
+<ol type="1">
+<li>Go to this app</li>
+</ol>
+<p><a href="random-nn-playground.janithwanni.com">random-nn-playground.janithwanni.com</a></p>
+<ol start="2" type="1">
+<li>Play with setting the number of neurons and re-fitting multiple times.</li>
+</ol>
+<div title="Pay attention to model size">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pay attention to model size</strong></p>
+</div>
+<div class="callout-content">
+<p>Think about how the fitted model looks with the different choices.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div title="Start running">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Start running</strong></p>
+</div>
+<div class="callout-content">
 <p>You’ve got 15 minutes</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="questions-for-you-1" class="slide level2">
 <h2>QUESTIONS for you</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Q1</a></li><li><a href="#tabset-3-2">Q2</a></li><li><a href="#tabset-3-3">Q3</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
 <p>What is the role of a node in the hidden layer?</p>
 <ul>
 <li>makes a linear cut</li>
@@ -289,24 +349,30 @@ Janith Wanniarachchi
 <li>defines a logistic function</li>
 <li>activates the net</li>
 </ul>
+</div>
+<div id="tabset-3-2">
 <p>Do you think the random seed used will affect a fit?</p>
 <ul>
 <li>yes</li>
 <li>no</li>
 <li>maybe</li>
 </ul>
+</div>
+<div id="tabset-3-3">
 <p>Will more neurons always result in a better fit?</p>
 <ul>
 <li>yes</li>
 <li>no</li>
 <li>maybe</li>
 </ul>
-<p>In one word, how useful was this workshop?</p>
-<p><img data-src="mentimeter_qr_code_1.png" style="width: 4rem; margin: 0 auto; text-align: center; display: block"></p>
-<p>Join the online poll at <a href="menti.com">menti.com</a> with code <code>4701 8473</code></p>
+</div>
+</div>
+</div>
 </div><div class="column fragment" data-fragment-index="2" style="width:50%;">
+<p><img data-src="final_menti.png" style="width: 6rem; margin: 0 auto; text-align: center; display: block"></p>
+<p>Join the online poll at <a href="menti.com">menti.com</a> with code <code>4398 8771</code></p>
 <div style="position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;">
-<iframe sandbox="allow-popups allow-scripts allow-same-origin allow-presentation" allowfullscreen="true" allowtransparency="true" frameborder="0" height="315" src="https://www.mentimeter.com/app/presentation/alsu838d4h47fbcjq9myyyvagdnz83sm/embed" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" width="420">
+<iframe sandbox="allow-popups allow-scripts allow-same-origin allow-presentation" allowfullscreen="true" allowtransparency="true" frameborder="0" height="315" src="https://www.mentimeter.com/app/presentation/alj3m1u8cudogusi4chsr1wbt1jfj6o8/embed" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" width="420">
 </iframe>
 </div>
 </div></div>
@@ -510,7 +576,7 @@ Janith Wanniarachchi
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -622,14 +688,13 @@ Janith Wanniarachchi
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-          const outerScaffold = trigger.parentElement.cloneNode(true);
-          const codeEl = outerScaffold.querySelector('code');
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
             }
-          }
-          return codeEl.innerText;
+            return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

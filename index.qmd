@@ -115,8 +115,11 @@ height <- 1080
 ## A little bit about me
 
 - This is the story of how I as a PhD student struggled for an entire year because I didn't win the lottery.
+
+![](https://i.kym-cdn.com/entries/icons/facebook/000/024/785/Screen_Shot_2017-11-30_at_1.12.37_PM.jpg){width=50%}
+
 - I work on explaining AI models.
-- And as someone working on explaining AI models,
+- And as someone working on explaining AI models, first I need to make an AI model.
 
 ## Fitting a neural network
 
@@ -138,6 +141,10 @@ height <- 1080
 :::: {.columns}
 ::: {.column width=50%}
 
+:::{.panel-tabset}
+
+## Q1
+
 What is the role of a node in the hidden layer?
 
 - makes a linear cut
@@ -146,11 +153,15 @@ What is the role of a node in the hidden layer?
 - defines a logistic function
 - activates the net
 
+## Q2
+
 Do you think the random seed used will affect a fit?
 
 - yes
 - no
 - maybe
+
+## Q3
 
 Will more neurons always result in a better fit?
 
@@ -158,23 +169,24 @@ Will more neurons always result in a better fit?
 - no
 - maybe
 
-![](mentimeter_qr_code_1.png){style="width: 4rem; margin: 0 auto; text-align: center; display: block"}
-
-Join the online poll at [menti.com](menti.com) with code `4701 8473` 
-
 :::
+:::
+
 ::: {.column .fragment fragment-index=2 width=50%}
 
-<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alsu838d4h47fbcjq9myyyvagdnz83sm/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
+![](final_menti.png){style="width: 6rem; margin: 0 auto; text-align: center; display: block"}
+
+Join the online poll at [menti.com](menti.com) with code `4398 8771` 
+
+<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alj3m1u8cudogusi4chsr1wbt1jfj6o8/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
 
 :::
 ::::
-<!-- <div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/aljthcmca5jhx2zgk2jdejdiuja6z8ih/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div> -->
 
 ## Let's work on fitting this dataset 
 
 :::: {.columns}
-::: {.column width=70%}
+::: {.column width=60%}
 
 ```{r}
 #| echo: false
@@ -204,9 +216,8 @@ p <- ggplot(dataset, aes(x = x, y = y, color = factor(class))) +
   coord_equal() +
   theme_minimal() +
   labs(color = "Class", x = "x", y = "y") +
-  theme(legend.position = "bottom",
-    axis.text = element_blank())
-  p
+  theme(legend.position = "bottom", axis.text = element_blank())
+p
 ```
 
 :::
@@ -225,6 +236,10 @@ one response, `Class`, a categorical variable with two levels.
 ::::{.columns}
 :::{.column width=50%}
 
+:::{.panel-tabset}
+
+## Hyperparameters
+
 **These hyperparameters are fixed for now**
 
 - Number of epochs: 100
@@ -233,6 +248,8 @@ one response, `Class`, a categorical variable with two levels.
 - Optimizer: Adam
 - Training set size: 5,000
 - Testing set size: 5,000
+
+## Question
 
 **But you can choose the number of neurons in the hidden layer.**
 
@@ -243,19 +260,18 @@ one response, `Class`, a categorical variable with two levels.
 #| out-width: 70%
 p
 ```
+:::
 
 :::
 :::{.column .fragment fragment-index=2 width=50%}
 
 **How many neurons?**
 
-![](mentimeter_qr_code.png){style="width: 4rem; margin: 0 auto; text-align: center; display: block"}
+![](final_menti.png){style="width: 6rem; margin: 0 auto; text-align: center; display: block"}
 
-Join the online poll at [menti.com](menti.com) with code `2311 3591` 
+Join the online poll at [menti.com](menti.com) with code `4398 8771` 
 
-
-<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/al3izsa4oukki2ynxuqfbv77a219zeb1/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
-
+<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alj3m1u8cudogusi4chsr1wbt1jfj6o8/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
 :::
 ::::
 
@@ -290,20 +306,45 @@ plot_nn_fit(a$four$combined, a$four$val) +
 ## What have we learned?
 
 - The larger neural network has more stable fits
+
 - The smaller neural network is as accurate as the larger one
     - sometimes
     - but has a lot of variability in the model fit (depending on the initial random seed)
 
 ## Your turn
 
-Go to this app, and play with setting the number of neurons and re-fitting multiple times. Think about how the fitted model looks with the different choices.
+
+1. Go to this app
+
+[random-nn-playground.janithwanni.com](random-nn-playground.janithwanni.com)
+
+2. Play with setting the number of neurons and re-fitting multiple times. 
+
+:::{.callout-note title="Pay attention to model size"}
+
+Think about how the fitted model looks with the different choices.
+
+:::
+
+
+:::{.fragment}
+
+:::{.callout-caution title="Start running"}
 
 You've got 15 minutes
+:::
+
+:::
+
 
 ## QUESTIONS for you
 
 :::: {.columns}
 ::: {.column width=50%}
+
+:::{.panel-tabset}
+
+## Q1
 
 What is the role of a node in the hidden layer?
 
@@ -313,11 +354,15 @@ What is the role of a node in the hidden layer?
 - defines a logistic function
 - activates the net
 
+## Q2
+
 Do you think the random seed used will affect a fit?
 
 - yes
 - no
 - maybe
+
+## Q3
 
 Will more neurons always result in a better fit?
 
@@ -325,22 +370,19 @@ Will more neurons always result in a better fit?
 - no
 - maybe
 
-In one word, how useful was this workshop?
-
-
-![](mentimeter_qr_code_1.png){style="width: 4rem; margin: 0 auto; text-align: center; display: block"}
-
-Join the online poll at [menti.com](menti.com) with code `4701 8473` 
-
 :::
+:::
+
 ::: {.column .fragment fragment-index=2 width=50%}
 
-<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alsu838d4h47fbcjq9myyyvagdnz83sm/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
+![](final_menti.png){style="width: 6rem; margin: 0 auto; text-align: center; display: block"}
+
+Join the online poll at [menti.com](menti.com) with code `4398 8771` 
+
+<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alj3m1u8cudogusi4chsr1wbt1jfj6o8/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
 
 :::
 ::::
-
-
 
 ## Wrapping up
 

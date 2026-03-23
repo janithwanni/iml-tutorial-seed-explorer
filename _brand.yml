@@ -1,0 +1,44 @@
+meta:
+  name: brand.yml
+color:
+  palette:
+    # purple section
+    grape: "#6827B3"
+    mauve: "#C8A2F2"
+    indigo: "#978BCC"
+    violet: "#6556A6"
+    # green section
+    dartmouth_green: "#196952"
+    jungle_green: "#0CA67A"
+    mint: "#24C99B"
+    burgundy: "#800020"
+# ===== Defining palette colors =======
+  foreground: black
+  background: white
+  primary: grape
+  secondary: mauve
+  tertiary: violet
+  success: dartmouth_green
+  info: teal
+  warning: orange
+  danger: burgundy
+  light: white
+  dark: "#404041"
+
+typography:
+  fonts:
+    - family: Quicksand
+      source: bunny
+    - family: Courier Prime
+      source: google
+# ======= Defining typography =======
+  base:
+    family: Quicksand 
+    size: 2rem
+  headings:
+    family: "'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif"
+    weight: normal
+  link:
+    color: purple
+  monospace:
+    family: Courier Prime
