@@ -286,15 +286,6 @@ Join the online poll at [menti.com](menti.com) with code `4398 8771`
 ![](imgs/app-demo.png)
 :::
 
-
-## What have we learned?
-
-- The larger neural network has more stable fits
-
-- The smaller neural network is as accurate as the larger one
-    - sometimes
-    - but has a lot of variability in the model fit (depending on the initial random seed)
-
 ## Your turn
 
 
@@ -315,11 +306,18 @@ Think about how the fitted model looks with the different choices.
 
 :::{.callout-caution title="Start running"}
 
-You've got 15 minutes
+You've got 10 minutes
 :::
 
 :::
 
+## What have we learned?
+
+- The larger neural network has more stable fits
+
+- The smaller neural network is as accurate as the larger one
+    - sometimes
+    - but has a lot of variability in the model fit (depending on the initial random seed)
 
 ## QUESTIONS for you
 
