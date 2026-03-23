@@ -6,8 +6,8 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-b6a8276bf55561bdbc268162d41bd1f7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.30">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Janith Wanniarachchi">
   <title>Go big or go home?</title>
@@ -17,9 +17,6 @@
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -32,7 +29,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-346106d55fa17a2e87f21d749ca0bedf.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-44312963e04b8ead88f86d3339f0ef9a.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -272,16 +269,16 @@ Janith Wanniarachchi
 </div>
 </div></div>
 </section>
-<section id="so-here-are-some-fits" class="slide level2">
-<h2>So here are some fits</h2>
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
-<section id="lets-try-some-different-sizes" class="slide level2">
+<section id="lets-try-some-different-sizes" class="slide level2 smaller">
 <h2>Let’s try some different sizes</h2>
 <ul>
 <li>We will fit two models: 5, 30 neurons</li>
 <li>We will also re-fit multiple times</li>
 </ul>
+<div class="fragment">
+<h4 id="for-that-we-will-use-a-special-tool-to-rerun-these-fits-multiple-times">For that we will use a special tool to rerun these fits multiple times</h4>
+<p><img data-src="imgs/app-demo.png"></p>
+</div>
 </section>
 <section id="what-have-we-learned" class="slide level2">
 <h2>What have we learned?</h2>
@@ -341,7 +338,7 @@ Janith Wanniarachchi
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Q1</a></li><li><a href="#tabset-3-2">Q2</a></li><li><a href="#tabset-3-3">Q3</a></li></ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Q1</a></li><li><a href="#tabset-3-2">Q2</a></li><li><a href="#tabset-3-3">Q3</a></li><li><a href="#tabset-3-4">Q4</a></li><li><a href="#tabset-3-5">Q5</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
 <p>What is the role of a node in the hidden layer?</p>
@@ -367,6 +364,17 @@ Janith Wanniarachchi
 <li>yes</li>
 <li>no</li>
 <li>maybe</li>
+</ul>
+</div>
+<div id="tabset-3-4">
+<p>In one word how would you describe this session?</p>
+</div>
+<div id="tabset-3-5">
+<p>How would you rate your experience in this session?</p>
+<ul>
+<li>The application worked smoothly</li>
+<li>I enjoyed trying out different model fits by various seeds</li>
+<li>I would recommend this application to other students</li>
 </ul>
 </div>
 </div>
@@ -579,7 +587,7 @@ Janith Wanniarachchi
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -691,14 +699,13 @@ Janith Wanniarachchi
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-          const outerScaffold = trigger.parentElement.cloneNode(true);
-          const codeEl = outerScaffold.querySelector('code');
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
             }
-          }
-          return codeEl.innerText;
+            return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

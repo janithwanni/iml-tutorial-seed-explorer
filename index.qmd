@@ -275,33 +275,17 @@ Join the online poll at [menti.com](menti.com) with code `4398 8771`
 :::
 ::::
 
-## So here are some fits
-
-```{r}
-#| echo: false
-#| fig-label: nn_fit_holder
-
-a <- list(
-  four = get_ranked_seed(ranked, 4),
-  eight = get_ranked_seed(ranked, 8),
-  five = get_ranked_seed(ranked, 5),
-  ten = get_ranked_seed(ranked, 10),
-  twenty = get_ranked_seed(ranked, 20),
-  thirty = get_ranked_seed(ranked, 30)
-)
-plot_nn_fit(a$four$combined, a$four$val) +
-  plot_nn_fit(a$eight$combined, a$eight$val) +
-  plot_nn_fit(a$five$combined, a$five$val) +
-  plot_nn_fit(a$ten$combined, a$ten$val) +
-  plot_nn_fit(a$twenty$combined, a$twenty$val) +
-  plot_nn_fit(a$thirty$combined, a$thirty$val)
-```
-
-
-## Let's try some different sizes
+## Let's try some different sizes {.smaller}
 
 - We will fit two models: 5, 30 neurons
 - We will also re-fit multiple times
+
+:::{.fragment}
+#### For that we will use a special tool to rerun these fits multiple times
+
+![](imgs/app-demo.png)
+:::
+
 
 ## What have we learned?
 
@@ -369,6 +353,18 @@ Will more neurons always result in a better fit?
 - yes
 - no
 - maybe
+
+## Q4
+
+In one word how would you describe this session?
+
+## Q5
+
+How would you rate your experience in this session?
+
+- The application worked smoothly
+- I enjoyed trying out different model fits by various seeds 
+- I would recommend this application to other students 
 
 :::
 :::
