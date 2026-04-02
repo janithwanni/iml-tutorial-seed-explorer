@@ -113,42 +113,58 @@ height <- 1080
 ```
 
 
-## A little bit about me
+## A little bit about me {.center}
 
-- This is the story of how I as a PhD student struggled for an entire year because I didn't win the lottery.
-
-![](https://i.kym-cdn.com/entries/icons/facebook/000/024/785/Screen_Shot_2017-11-30_at_1.12.37_PM.jpg){width=50%}
+![](https://i.kym-cdn.com/entries/icons/facebook/000/024/785/Screen_Shot_2017-11-30_at_1.12.37_PM.jpg){width=40%}
 
 - I work on explaining AI models.
 - And as someone working on explaining AI models, first I need to make an AI model.
+- This is the story of how I spent an year relearning how to make AI models
 
-## Before we start {.center}
+:::{.fragment}
+- And learn where ✨luck✨ plays a part in making effective neural networks 
+:::
+
+## Before we start {.smaller}
 
 :::: {.columns}
-::: {.column width=58%}
+::: {.column width=60%}
 
-During the workshop, you’ll be asked a few questions to help explore the ideas we’re covering. By providing a response, you are agreeing to allow us to use your data. **You can choose not to respond to any question**. Your answers are anonymous, cannot be individually identified, and only summary statistics are stored. Nothing will be marked or affect your grade. You will be able to use a web app during the session which does not collect any data. 
+* You'll be asked a few questions 
+* By responding, you agree to allow us to use your data.
+* Your answers
+  - are anonymous.
+  - cannot be individually idenitified.
+  - and only summary statistics are stored.
+  - are not marked and **will not affect your grade.**
+* **You can choose not to respond to any question.**
+* You will be able to use a web app during the session which does not collect any data.
+  
+<!-- During the workshop, you’ll be asked a few questions to help explore the ideas we’re covering. By providing a response, you are agreeing to allow us to use your data. **You can choose not to respond to any question**. Your answers are anonymous, cannot be individually identified, and only summary statistics are stored. Nothing will be marked or affect your grade. You will be able to use a web app during the session which does not collect any data.  -->
 
 :::
-::: {.column width=42%}
+::: {.column width=40%}
 
 Participating in these activities can *help you build your understanding*, and providing your responses will help us *improve how we teach this topic*.
 
 You can learn more details about the project at [https://bit.ly/4btsNrR](https://bit.ly/4btsNrR).
 
-:::{.fragment}
-
-### Now back to the show
-
-:::
 :::
 ::::
 
+:::{.fragment .center}
+
+<br/>
+
+### Now back to the show 
+
+:::
+
 ## Fitting a neural network
 
-- It's hard, right? We'd like to hit an easy button to get a model?
-- We care only about the performance of the model and the modeling pipeline.
-- We do not care about the size or complexity of the models.
+- It's hard, right? We'd like to hit an easy button to get a model!
+- Most of the time, we care only about the performance of the model and the modeling pipeline.
+- Given the computational power we have, we rarely care about the size or complexity of the models.
 - _If it predicts well all is ok, right?_
 
 
@@ -323,7 +339,7 @@ Join the online poll at [menti.com](menti.com) with code `4398 8771`
 
 1. Go to this app
 
-[random-nn-playground.janithwanni.com](random-nn-playground.janithwanni.com)
+[random-nn-playground.janithwanni.com](https://random-nn-playground.janithwanni.com)
 
 2. Play with setting the number of neurons and re-fitting multiple times. 
 
@@ -421,6 +437,8 @@ Join the online poll at [menti.com](menti.com) with code `4398 8771`
 
 Have any suggestions or ideas? {{< fa comment >}}
 
+![](imgs/profile_picture.jpeg){style="display:none"}
+
 ```{=html}
 <div class = "card-container">
   <div class="card">
@@ -457,10 +475,10 @@ Have any suggestions or ideas? {{< fa comment >}}
             <span> <i class = "fa-solid fa-globe fa-sm"></i> </span>
             <span class = "contact-detail"> janithwanni.com </span>
           </div>
-          <div>
+          <!-- <div>
             <span> <i class="fa-solid fa-brain fa-sm"></i> </span>
             <span class = "contact-detail"> hear.janithwanni.com </span>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

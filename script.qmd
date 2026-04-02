@@ -5,5 +5,48 @@ author: "Janith Wanniarachchi"
 engine: knitr
 ---
 
-Hi everyone 
+## Slide 1
+
+- 
+
+## Slide 2
+
+- Mention that the grade is not affected 
+- Mention that they can't be identified and that we are using mentimeter
+
+## 3
+
+- Talk about how neural network training usually focuses on getting the best performance and with the advent of gpus it's easier to make really large neural networks work really fast  
+
+## 4
+
+- In the playground, 
+  - Walk them through the UI, focus on the start and restart button,
+  - Show them that there are several options for adding neurons and show that when you add or remove neurons the initial fit changes
+  - Show them that the pieces inside the neurons are the initial weights and how they change everytime you add or remove weights
+  - We are going to show the test data
+  - run it and show the loss on the side
+  - our target is to reduce the loss and we assume that reducing the loss means that the model is fitting well
+  - For a test case try running it with a user given number, and then show that you can rerun it and that the fit can change 
+
+## 5
+
+Let them join menti and submit their answers
+
+## 6 
+
+Show them that the boundary is a bunch of linear lines
+
+## 7
+
+Same thing again
+
+## 8
+
+In the application show that they can edit the dataset as needed
+
+Run after adding a few more nodes
+
+## 9 
+
 
