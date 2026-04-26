@@ -315,7 +315,7 @@ How would you rate your experience in the following categories out of 5?
 
 :::
 
-## What have we learned?
+## What have we learned? {.smaller}
 
 - The role of a neuron in a neural network is to define a linear hyperplane (a "cut") that partitions the input space.
 - More neurons do not always result in better performance in training and testing set
