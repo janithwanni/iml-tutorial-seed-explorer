@@ -317,19 +317,23 @@ How would you rate your experience in the following categories out of 5?
 
 ## What have we learned? {.smaller}
 
+:::{.incremental}
 - The role of a neuron in a neural network is to define a linear hyperplane (a "cut") that partitions the input space.
 - More neurons do not always result in better performance in training and testing set
 - The random seed has an effect on a model's performance
-
 - Larger neural networks tend to have more consistent performance on multiple metrics.
 - Smaller neural networks can be as performant as the larger one
     - but they tend to vary (depending on the initial random seed)
 - Always fit your neural networks with differing seeds to see what the effect is on the model.
+:::
 
+:::{.fragemnt}
 On a separate note,
 
 - Ask why and how things work, or do something different from what we expect
 - The big black boxes of neural networks are not so dark with little glimmers of light
+
+:::
 
 ## Thank you! {.center}
 
