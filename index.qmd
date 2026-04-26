@@ -1,5 +1,5 @@
 ---
-title: "Go big or go home?"
+title: "Decisions behind AI" 
 subtitle: "A worksheet on neural network fitting for ETC3250/5250"
 author: "Janith Wanniarachchi"
 format:
@@ -50,80 +50,9 @@ theme_set(
     )
 )
 
-plot_nn_fit <- function(combined, f1_score) {
-  data_obj <- arrow::read_parquet(glue::glue(
-    "fits/{combined}_fit.parquet.lz4"
-  ))
-  ggplot(data_obj, aes(x = x, y = y, color = factor(preds))) +
-    geom_point(show.legend = F) +
-    geom_line(
-      data = original_bound,
-      aes(x = x, y = y),
-      linewidth = 1,
-      alpha = 0.5,
-      color = "white",
-      inherit.aes = FALSE
-    ) +
-    coord_equal() +
-    theme_void() +
-    labs(
-      title = paste(
-        (str_split(combined, "_") |> unlist())[1],
-        " neurons"
-      )
-    )
-}
-
-process_metrics <- function(metrics) {
-  metrics |>
-    bind_rows() |>
-    mutate(row_id = row_number()) |>
-    pivot_longer(c(f1, acc), names_to = "metric", values_to = "val")
-}
-
-rank_metrics <- function() {
-  metric_files <- list.files(
-    here("metrics"),
-    pattern = "*.lz4",
-    full.names = TRUE
-  )
-  metrics <- lapply(metric_files, arrow::read_parquet) |>
-    process_metrics()
-
-  metrics |>
-    filter(metric == "f1") |>
-    group_by(neuron) |>
-    arrange(val) |>
-    mutate(ranked = row_number()) |>
-    ungroup()
-}
-
-
-get_ranked_seed <- function(ranked, neurons, rank_val = 1) {
-  x <- ranked |>
-    filter(neuron == neurons, ranked == rank_val) |>
-    unite(name, neuron, seed, epoch)
-
-  return(list(combined = x$name, val = x$val))
-}
-
-ranked <- rank_metrics()
 width <- 1080
 height <- 1080
 ```
-
-
-## A little bit about me {.center}
-
-![](https://i.kym-cdn.com/entries/icons/facebook/000/024/785/Screen_Shot_2017-11-30_at_1.12.37_PM.jpg){width=40%}
-
-- I work on explaining AI models.
-- And as someone working on explaining AI models, first I need to make an AI model.
-- This is the story of how I spent an year relearning how to make AI models
-
-:::{.fragment}
-- And learn where ✨luck✨ plays a part in making effective neural networks 
-:::
 
 ## Before we start {.smaller}
 
@@ -160,13 +89,14 @@ You can learn more details about the project at [https://bit.ly/4btsNrR](https:/
 
 :::
 
-## Fitting a neural network
+## A little bit about me {.center}
 
-- It's hard, right? We'd like to hit an easy button to get a model!
-- Most of the time, we care only about the performance of the model and the modeling pipeline.
-- Given the computational power we have, we rarely care about the size or complexity of the models.
-- _If it predicts well all is ok, right?_
-
+:::{.incremental}
+- Hi 👋🏽 I'm Janith, a final year PhD student. 
+- My work centers around making tools that explain AI models more accessible
+- And as someone working on explaining AI models, I tend to fit a lot of neural networks.
+- Let's get a refresher on how neural networks work!
+:::
 
 ## Quick refresher
 
@@ -174,53 +104,60 @@ You can learn more details about the project at [https://bit.ly/4btsNrR](https:/
 
 ![](playground_2.png)
 
+::: {.notes}
+Things that we will need to discuss about the playground should come here.
+There are four parts to this UI
+the top bar has the play button to start the fitting, next to it we see how many epochs or training rounds the fitting has gone for, 
+Next to it we have a set of hyper parameters like the learning rate, the activation etc. but we are not going to touch on that today
 
-## QUESTIONS for you
+The left most panel contains the datasets that we can use for this demonstration, we will use this one for ease of understanding
 
-:::: {.columns}
-::: {.column width=50%}
+The middle panel shows the layers and the flow of data in the model. We can add up to 8 neurons in a hidden layer. For this demonstration I will use four neurons. We can add more layers if needed but for simplicity in this case let's use one hidden layer. and then on the right hand we have the fit of the model on the entire xy plane. we get to see the training and testing loss and we get to see the testing dataset on the plane as well.
+
+We can start fitting a model by pressing the play button and after we are happy with the result we can add or remove more neurons, we can restart the training etc. Give it a try and see how it feels for 3 minutes. 
+:::
+
+## Fitting a neural network
+
+- It looks easy, right? We'd like to hit an easy button to get a model!
+- Most of the time, we care only about the performance of the model and the modeling pipeline.
+- Given the computational power we have, we rarely care about the size or complexity of the models.
+- _If it predicts well all is ok, right?_
+
+
+## Let's have a check-in 
+
 
 :::{.panel-tabset}
 
 ## Q1
 
-What is the role of a neuron in the hidden layer?
+Which of the following best describes the role of a single neuron in a hidden layer?
 
-- defines a logistic function
-- activates the net
-- fits one part of the data
-- removes noise
-- makes a linear cut
+- Creates a flexible curve that wraps around specific data points. 
+- Acts as a filter that removes noise from the dataset.
+- Defines a linear hyperplane (a "cut") that partitions the input space.
+- Maps each individual input point to its own unique output coordinate.
 
 ## Q2
 
-Do you think the random seed used will affect a fit?
+Do you think the random seed used will affect the model's performance on the training set?
 
-- yes
-- no
-- maybe
+- Yes
+- No
+- Maybe?
 
 ## Q3
 
-Will more neurons always result in a better fit?
+Will more neurons always result in better performance in the training and testing set?
 
-- yes
-- no
-- maybe
-
-:::
-:::
-
-::: {.column .fragment fragment-index=2 width=50%}
-
-![](final_menti.png){style="width: 6rem; margin: 0 auto; text-align: center; display: block"}
-
-Join the online poll at [menti.com](menti.com) with code `4398 8771` 
-
-<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alj3m1u8cudogusi4chsr1wbt1jfj6o8/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
+- Yes
+- No
+- Maybe
 
 :::
-::::
+
+# Fitting our own neural network
 
 ## Let's work on fitting this dataset 
 
@@ -270,10 +207,7 @@ one response, `Class`, a categorical variable with two levels.
 :::
 ::::
 
-## Neural network size? {.smaller}
-
-::::{.columns}
-:::{.column width=50%}
+## Number of neurons? {.smaller}
 
 :::{.panel-tabset}
 
@@ -290,49 +224,28 @@ one response, `Class`, a categorical variable with two levels.
 
 ## Question
 
-**How many neurons are needed in the hidden layer?**
+**How many neurons are needed in the hidden layer for a neural network with a single hidden layer?**
 
 ```{r}
 #| echo: false
 #| fig-width: 4
 #| fig-height: 5
-#| out-width: 70%
+#| out-width: 50%
 p
 ```
 :::
 
-:::
-:::{.column .fragment fragment-index=2 width=50%}
+Here we need to approach how we go from asking about the number of neurons and then test it out.
 
-**How many neurons?**
+## Let's try out these sizes {.smaller}
 
-![](final_menti.png){style="width: 6rem; margin: 0 auto; text-align: center; display: block"}
-
-Join the online poll at [menti.com](menti.com) with code `4398 8771` 
-
-<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alj3m1u8cudogusi4chsr1wbt1jfj6o8/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
-:::
-::::
-
-## Let's try some different data and NN sizes {.smaller}
-
-:::: {.columns}
-::: {.column width=25%}
-
-- We will fit two models: 5, 30 neurons
-- We will also re-fit multiple times
-
-:::
-::: {.column width=75%}
-:::{.fragment}
 
 #### For that we will use a special tool to rerun these fits multiple times
 
-![](imgs/app-demo.png)
+We will first try out with 5, 8 and 16
 
-:::
-:::
-::::
+![](imgs/app-demo.png){width=25%}
+
 
 ## Your turn
 
@@ -359,77 +272,58 @@ You've got 10 minutes
 
 :::
 
-## What have we learned?
-
-- The larger neural network has more consistent fit statistics
-
-- The smaller neural network is as accurate as the larger one
-    - sometimes
-    - but has a lot of variability in the model fit (depending on the initial random seed)
-
-## QUESTIONS for you
-
-:::: {.columns}
-::: {.column width=50%}
+## Let's have a check-in 
 
 :::{.panel-tabset}
 
 ## Q1
 
-What is the role of a neuron in the hidden layer?
+Which of the following best describes the role of a single neuron in a hidden layer?
 
-- defines a logistic function
-- activates the net
-- fits one part of the data
-- removes noise
-- makes a linear cut
+- Creates a flexible curve that wraps around specific data points. 
+- Acts as a filter that removes noise from the dataset before processing. 
+- Defines a linear hyperplane (a "cut") that partitions the input space.
+- Maps each individual input point to its own unique output coordinate.
 
 ## Q2
 
-Do you think the random seed used will affect a fit?
+Do you think the random seed used will affect the model's performance on the training set?
 
-- yes
-- no
-- maybe
+- Yes
+- No
+- Maybe
 
 ## Q3
 
-Will more neurons always result in a better fit?
+Will more neurons always result in better performance in the training and testing set?
 
-- yes
-- no
-- maybe
+- Yes
+- No
+- Maybe
 
 ## Q4
 
-In one word how would you describe this session?
+What is the most important thing you learned from this session?
 
 ## Q5
 
-How would you rate your experience in this session?
+How would you rate your experience in the following categories out of 5?
 
 - The application worked smoothly
 - I enjoyed trying out different model fits by various seeds 
 - I would recommend this application to other students 
 
 :::
-:::
 
-::: {.column .fragment fragment-index=2 width=50%}
+## What have we learned?
 
-![](final_menti.png){style="width: 6rem; margin: 0 auto; text-align: center; display: block"}
+- Larger neural networks tend to have more consistent performance on multiple metrics.
+- Smaller neural networks can be as performant as the larger one
+    - but they tend to vary (depending on the initial random seed)
+- Always fit your neural networks with differing seeds to see what the effect is on the model.
 
-Join the online poll at [menti.com](menti.com) with code `4398 8771` 
+On a separate note,
 
-<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-popups allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alj3m1u8cudogusi4chsr1wbt1jfj6o8/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
-
-:::
-::::
-
-## Wrapping up
-
-- Be curious 
-- Care about the little things 
 - Ask why and how things work, or do something different from what we expect
 - The big black boxes of neural networks are not so dark with little glimmers of light
 
