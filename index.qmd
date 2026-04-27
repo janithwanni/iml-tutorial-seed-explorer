@@ -149,7 +149,7 @@ Do you think the random seed used will affect the model's performance on the tra
 
 ## Q3
 
-Will more neurons always result in better performance in the training and testing set?
+Will more neurons result in better performance in the training and testing set?
 
 - Yes
 - No
@@ -295,7 +295,7 @@ Do you think the random seed used will affect the model's performance on the tra
 
 ## Q3
 
-Will more neurons always result in better performance in the training and testing set?
+Will more neurons result in better performance in the training and testing set?
 
 - Yes
 - No
@@ -307,11 +307,11 @@ What is the most important thing you learned from this session?
 
 ## Q5
 
-How would you rate your experience in the following categories out of 5?
+The following questions can be answered on a 5-point scale, with 5 indicating really good and 1 being really poor
 
 - The application worked smoothly
-- I enjoyed trying out different model fits by various seeds 
-- I would recommend this application to other students 
+- I enjoyed trying out different model fits by varying the seed to see change in the result
+- I would recommend this application to other students to help them understand the model fitting 
 
 :::
 
