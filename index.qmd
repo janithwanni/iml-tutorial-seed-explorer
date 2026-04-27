@@ -252,7 +252,9 @@ We will first try out with 5, 8 and 16
 
 1. Go to this app
 
-[random-nn-playground.janithwanni.com](https://random-nn-playground.janithwanni.com)
+<!-- [random-nn-playground.janithwanni.com](https://random-nn-playground.janithwanni.com) -->
+<!-- [https://huggingface.co/spaces/janithcwanni/seed-explorer](https://huggingface.co/spaces/janithcwanni/seed-explorer) -->
+[https://janithcwanni-seed-explorer.hf.space](https://janithcwanni-seed-explorer.hf.space)
 
 2. Play with setting the number of neurons and re-fitting multiple times. 
 
